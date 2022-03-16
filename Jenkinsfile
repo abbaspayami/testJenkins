@@ -1,11 +1,12 @@
 pipeline {
-    agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
+    agent any
     stages {
-        stage('build') {
+        stage('Git-Checkout') {
             steps {
-                sh 'mvn --version'
+                echo "checking out from Git Repo"
             }
         }
+        
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
